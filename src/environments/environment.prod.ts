@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: "http://localhost:8090"
+  api: "https://serene-wave-80392.herokuapp.com"
 };
