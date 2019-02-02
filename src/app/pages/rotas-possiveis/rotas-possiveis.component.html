@@ -1,0 +1,82 @@
+<card cardTitle="Rotas possíveis">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Rotas possíveis por colaborador</h1>
+            <div class="lead">
+                <p>Aqui serão exibidas as possíveis rotas a qual cada colaraborador poderá se dirigir.</p>
+                <p>Considerando o <strong>
+                        RAIO DE
+                        <mat-form-field class="inpt-number-radius">
+                            <input type="number" matInput [formControl]="radiusControl" min="0" required>
+                        </mat-form-field>
+                        KM
+                    </strong> do ponto de partida do colaborador em direção ao
+                    estabelecimento.</p>
+                <hr class="my-4">
+                <p>
+                    Agrupar resultado por:
+                    <mat-form-field>
+                        <mat-select [formControl]="groupControl" required>
+                            <mat-option *ngFor="let group of groupBy" [value]="group.value">
+                                {{group.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button class="btn btn-outline-secondary btn-lg float-right" role="button" [disabled]="radiusControl.invalid"
+                        (click)="find(groupControl.value, radiusControl.value)">
+                        Buscar</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <mat-radio-group (change)="changeToggleValue($event.value)">
+        <div class="pl-3"><mat-radio-button value="ONY_COLLABORATORS_WITH_ROUTERS" checked>Exibir apenas colaboradores com rotas</mat-radio-button></div>
+        <div class="pl-3"><mat-radio-button value="OUT_OF_REACH">Exibir lojas fora de alcance por colaborador</mat-radio-button></div>
+        <div class="pl-3"><mat-radio-button value="IDLE_COLLABORATOR">Exibir colaboradores sem rota para fazer</mat-radio-button></div>
+    </mat-radio-group>
+
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro por colaborador">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Linha </th>
+            <td mat-cell *matCellDef="let element; let i = index;"><strong>#{{i+1}}</strong></td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element"> {{element.collaborator.name}} </td>
+        </ng-container>
+
+        <!-- Latitude -->
+        <ng-container matColumnDef="latitude">
+            <th mat-header-cell *matHeaderCellDef> Latitude</th>
+            <td mat-cell *matCellDef="let element"> {{element.collaborator.latitude}}</td>
+        </ng-container>
+
+        <!-- Longitude -->
+        <ng-container matColumnDef="longitude">
+            <th mat-header-cell *matHeaderCellDef> Longitude</th>
+            <td mat-cell *matCellDef="let element"> {{element.collaborator.longitude}}</td>
+        </ng-container>
+
+        <!-- Routers -->
+        <ng-container matColumnDef="router">
+            <th mat-header-cell *matHeaderCellDef> Rotas</th>
+            <td mat-cell *matCellDef="let element">
+                <button class="btn btn-outline-secondary" (click)="openRouter(element)" mat-raised-button [disabled]="element.store.length === 0">
+                    <img [src]="element.store.length != 0 ? 'assets/iconfonts/route.svg' : 'assets/iconfonts/error.svg'"
+                        width="20px">
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</card>

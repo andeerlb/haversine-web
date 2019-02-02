@@ -1,0 +1,20 @@
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.app-full-dialog {
+    mat-dialog-container mat-dialog-content  {
+        padding: 0;
+    }
+    
+    .mat-row {
+        &:nth-child(odd){
+            background-color:rgba(0,0,0,.1);
+        }
+        &:nth-child(even){
+            background-color:white;
+        }
+    }
+}
