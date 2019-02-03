@@ -3,8 +3,9 @@ Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 pa
 
 ## Porque usar angular?
 <p>Angular é o Framework ao qual possuo mais conhecimento atualmente. Mesmo estudando react frequentemente, trabalhar com angular me deixa obrigado a entender melhor a estrutura dessa "ferramenta".</p><br />
-## Como executar?
-### Necessario
+
+## Como executar?<br />
+### Necessario<br />
 <p>Angular CLI 7.3.0<p>
 <p>Node 8.10.0<p>
 
