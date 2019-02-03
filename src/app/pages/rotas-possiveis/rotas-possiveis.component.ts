@@ -17,6 +17,7 @@ import { DialogPossibleRouters } from './dialog-possible-routers.component';
 export class RotasPossiveis implements OnInit {
   constructor(public dialog: MatDialog, private service: RotasPossiveisService) { }
 
+  typeOfFilterRadio: String = "ONY_COLLABORATORS_WITH_ROUTERS";
   showIdleCollaborator = false;
   showOutOfReachByCollaborator = false;
   displayedColumns: string[] = ['position', 'name', 'latitude', 'longitude','router'];
@@ -25,8 +26,8 @@ export class RotasPossiveis implements OnInit {
   radiusControl = new FormControl(2, [Validators.required]);
 
   groupBy: GroupByPossibleRouter[] = [
-    {value: EnumGroupByPossibleRouter.PERSON, viewValue: 'Pessoa'},
-    {value: EnumGroupByPossibleRouter.STORE, viewValue: 'Estabelecimento'}
+    {value: EnumGroupByPossibleRouter.PERSON, viewValue: 'Pessoa', enabled: true},
+    {value: EnumGroupByPossibleRouter.STORE, viewValue: 'Estabelecimento', enabled: false}
   ];
 
   ngOnInit() {
@@ -52,7 +53,7 @@ export class RotasPossiveis implements OnInit {
   this.dataSource.filter = filterValue;
   }
 
-  changeToggleValue(event: any) {
+  changeToggleValue(event: String) {
     switch (event) {
       case "ONY_COLLABORATORS_WITH_ROUTERS":
         this.showIdleCollaborator = false;
@@ -67,12 +68,13 @@ export class RotasPossiveis implements OnInit {
         this.showOutOfReachByCollaborator = false;
         break;
     }
+    this.typeOfFilterRadio = event;
     this.list(this.groupControl.value, this.radiusControl.value);
   }
 
   openRouter(el: any): void {
     const dialogRef = this.dialog.open(DialogPossibleRouters, {
-      data: [el, this.radiusControl.value, this.showOutOfReachByCollaborator],
+      data: [el, this.radiusControl.value, this.typeOfFilterRadio],
       panelClass: 'app-full-dialog'
     });
 

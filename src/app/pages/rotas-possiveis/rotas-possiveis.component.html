@@ -17,7 +17,7 @@
                     Agrupar resultado por:
                     <mat-form-field>
                         <mat-select [formControl]="groupControl" required>
-                            <mat-option *ngFor="let group of groupBy" [value]="group.value">
+                            <mat-option *ngFor="let group of groupBy" [value]="group.value" [disabled]="!group.enabled">
                                 {{group.viewValue}}
                             </mat-option>
                         </mat-select>
