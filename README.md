@@ -1,6 +1,8 @@
 # HaversineWeb
-Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 para lat2 e long2.
+<p>Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 para lat2 e long2.</p><br />
 
+# URL DE DEPLOY NO HEROKU<br />
+https://haversineweb.herokuapp.com/pages/rotaspossiveis
 ## Porque usar angular?
 <p>Angular é o Framework ao qual possuo mais conhecimento atualmente. Mesmo estudando react frequentemente, trabalhar com angular me deixa obrigado a entender melhor a estrutura dessa "ferramenta".</p><br />
 
