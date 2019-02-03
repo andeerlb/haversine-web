@@ -1,6 +1,8 @@
 # HaversineWeb
 Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 para lat2 e long2.
 
+## Porque usar angular?
+<p>Angular é o Framework ao qual possuo mais conhecimento atualmente. Mesmo estudando react frequentemente, trabalhar com angular me deixa obrigado a entender melhor a estrutura dessa "ferramenta".</p><br />
 ## Como executar?
 ### Necessario
 <p>Angular CLI 7.3.0<p>
@@ -8,5 +10,5 @@ Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 pa
 
 <p>Após clonar o repositório digite <br />
   <b>npm install</b><br />
-  <b>npm i typescript@3.2.4</b><br />
+  <b>npm install typescript@3.2.4</b><br />
   <b>ng serve -o --port 4800</b><br />
