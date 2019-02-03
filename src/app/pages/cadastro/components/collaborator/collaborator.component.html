@@ -1,0 +1,20 @@
+<card cardTitle="Cadastrar colaborador">
+    <form class="container" [formGroup]="collaboratorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Nome" formControlName="name">
+        <mat-error *ngIf="f.name.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" min="1" matInput placeholder="Latitude" formControlName="latitude">
+        <mat-error *ngIf="f.latitude.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="number" min="1" matInput placeholder="Longitude" formControlName="longitude">
+        <mat-error *ngIf="f.longitude.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <button class="btn btn-outline-secondary float-right mt-2" type="submit" [disabled]="collaboratorForm.invalid">Cadastrar</button>
+    </form>
+</card>

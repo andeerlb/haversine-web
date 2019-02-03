@@ -61,7 +61,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTableModule,
     MatSlideToggleModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
