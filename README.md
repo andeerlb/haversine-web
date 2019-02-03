@@ -1,5 +1,6 @@
 # HaversineWeb
 <p>Exibi com base no teorema de haversine a distância, partindo da lat1 e long1 para lat2 e long2.</p><br />
+usar a branch: master
 
 # URL DE DEPLOY NO HEROKU<br />
 https://haversineweb.herokuapp.com/pages/rotaspossiveis
