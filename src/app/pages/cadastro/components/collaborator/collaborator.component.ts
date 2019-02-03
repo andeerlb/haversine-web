@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CollaboratorService } from "./collaborator.service";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Collaborator } from '../../../../shared/models/collaborator.model';
-import { GlobalService } from '../../../../shared/services/global.service';
-import { RootComponent } from '../../../../shared/roots/root.component';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
@@ -13,12 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./collaborator.component.scss'],
   providers: [CollaboratorService]
 })
-export class CollaboratorComponent extends RootComponent implements OnInit {
+export class CollaboratorComponent implements OnInit {
 
   collaboratorForm: FormGroup;
 
-  constructor(public _globalService: GlobalService, private _collaborator: CollaboratorService, private formBuilder: FormBuilder) {
-    super(_globalService);
+  constructor(private _collaborator: CollaboratorService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
