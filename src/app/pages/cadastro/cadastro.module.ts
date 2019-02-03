@@ -7,6 +7,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CadastroComponent } from './cadastro.component';
 import { CollaboratorComponent } from './components/collaborator/collaborator.component';
 import { StoreComponent } from './components/store/store.component';
+import { CityComponent } from './components/city/city.component';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { StoreComponent } from './components/store/store.component';
     declarations: [
         CadastroComponent,
         CollaboratorComponent,
-        StoreComponent
+        StoreComponent,
+        CityComponent
     ]
 })
 export class CadastroModule { }

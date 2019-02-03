@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment as env } from '../../../environments/environment';
 import { EnumGroupByPossibleRouter } from '../../shared/models/enum-group-by-possible-router.model';
-import { City } from 'src/app/shared/models/city.model';
+import { City } from '../../shared/models/city.model';
 
 @Injectable({
   providedIn: 'root'

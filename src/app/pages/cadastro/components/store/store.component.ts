@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { City } from '../../../../shared/models/city.model';
 
 @Component({
-  selector: 'app-collaborator',
+  selector: 'app-store',
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss'],
   providers: [StoreService, CadastroService, RotasPossiveisService]

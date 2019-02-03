@@ -16,6 +16,10 @@ export let MENU_ITEM = [
             {
                 path: 'store',
                 title: 'Estabelecimento'
+            },
+            {
+                path: 'city',
+                title: 'Cidade'
             }
         ]
     }
