@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { Observable } from 'rxjs';
 import { EnumGroupByPossibleRouter } from '../../shared/models/enum-group-by-possible-router.model';
 import { GroupByPossibleRouter } from '../../shared/models/group-by-possible-router';
 import { RotasPossiveisService } from './rotas-possiveis.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import { DialogPossibleRouters } from './dialog-possible-routers.component';
+import { City } from '../../shared/models/city.model';
 
 @Component({
   selector: 'app-rotas-possiveis',
@@ -17,12 +19,14 @@ import { DialogPossibleRouters } from './dialog-possible-routers.component';
 export class RotasPossiveis implements OnInit {
   constructor(public dialog: MatDialog, private service: RotasPossiveisService) { }
 
+  cities: Observable<City>;
   typeOfFilterRadio: String = "ONY_COLLABORATORS_WITH_ROUTERS";
   showIdleCollaborator = false;
   showOutOfReachByCollaborator = false;
   displayedColumns: string[] = ['position', 'name', 'latitude', 'longitude','router'];
   dataSource = new MatTableDataSource();
   groupControl = new FormControl(EnumGroupByPossibleRouter.PERSON, [Validators.required]);
+  cityControl = new FormControl(null);
   radiusControl = new FormControl(2, [Validators.required]);
 
   groupBy: GroupByPossibleRouter[] = [
@@ -31,16 +35,21 @@ export class RotasPossiveis implements OnInit {
   ];
 
   ngOnInit() {
+    this.cities = this.listOfCities();
     this.dataSource.filterPredicate = (data: {collaborator: {name: string}}, filterValue: string) => data.collaborator.name.trim().toLowerCase().indexOf(filterValue) !== -1;
-    this.list(this.groupControl.value, this.radiusControl.value);
+    this.list(this.groupControl.value, this.radiusControl.value, this.cityControl.value);
   }
 
   find(groupBy: EnumGroupByPossibleRouter, radius: Number): void {
-    this.list(groupBy, radius);
+    this.list(groupBy, radius, this.cityControl.value);
   }
 
-  private list(groupBy: EnumGroupByPossibleRouter, radius: Number): void {
-    this.service.list(groupBy, radius, this.showIdleCollaborator, this.showOutOfReachByCollaborator)
+  private listOfCities(): Observable<City> {
+    return this.service.listOfCities();
+  }
+
+  private list(groupBy: EnumGroupByPossibleRouter, radius: Number, city: City): void {
+    this.service.list(groupBy, radius, this.showIdleCollaborator, this.showOutOfReachByCollaborator, city)
         .subscribe(
       colaborators => this.dataSource = colaborators,
       errors => console.log(errors)
@@ -69,7 +78,11 @@ export class RotasPossiveis implements OnInit {
         break;
     }
     this.typeOfFilterRadio = event;
-    this.list(this.groupControl.value, this.radiusControl.value);
+    this.list(this.groupControl.value, this.radiusControl.value, this.cityControl.value);
+  }
+
+  selectCity() {
+    this.list(this.groupControl.value, this.radiusControl.value, this.cityControl.value);
   }
 
   openRouter(el: any): void {
