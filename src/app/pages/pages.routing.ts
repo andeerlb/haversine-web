@@ -7,7 +7,8 @@ export const childRoutes: Routes = [
         component: PagesComponent,
         children: [
             { path: '', redirectTo: 'index', pathMatch: 'full' },
-            { path: 'rotaspossiveis', loadChildren: './rotas-possiveis/rotas-possiveis.module#RotasPossiveisModule' }
+            { path: 'rotaspossiveis', loadChildren: './rotas-possiveis/rotas-possiveis.module#RotasPossiveisModule' },
+            { path: 'cadastro', loadChildren: './cadastro/cadastro.module#CadastroModule' },
         ]
     }
 ];
