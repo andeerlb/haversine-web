@@ -30,7 +30,7 @@ export class RotasPossiveis implements OnInit {
   radiusControl = new FormControl(2, [Validators.required]);
 
   groupBy: GroupByPossibleRouter[] = [
-    {value: EnumGroupByPossibleRouter.PERSON, viewValue: 'Pessoa', enabled: true},
+    {value: EnumGroupByPossibleRouter.PERSON, viewValue: 'Colaborador', enabled: true},
     {value: EnumGroupByPossibleRouter.STORE, viewValue: 'Estabelecimento', enabled: false}
   ];
 
