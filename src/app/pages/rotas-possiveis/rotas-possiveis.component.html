@@ -30,11 +30,34 @@
         </div>
     </div>
 
-    <mat-radio-group (change)="changeToggleValue($event.value)">
-        <div class="pl-3"><mat-radio-button value="ONY_COLLABORATORS_WITH_ROUTERS" checked>Exibir apenas colaboradores com rotas</mat-radio-button></div>
-        <div class="pl-3"><mat-radio-button value="OUT_OF_REACH">Exibir lojas fora de alcance por colaborador</mat-radio-button></div>
-        <div class="pl-3"><mat-radio-button value="IDLE_COLLABORATOR">Exibir colaboradores sem rota para fazer</mat-radio-button></div>
-    </mat-radio-group>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <mat-radio-group (change)="changeToggleValue($event.value)">
+                    <div class="pl-3">
+                        <mat-radio-button value="ONY_COLLABORATORS_WITH_ROUTERS" checked>Exibir apenas colaboradores
+                            com rotas</mat-radio-button>
+                    </div>
+                    <div class="pl-3">
+                        <mat-radio-button value="OUT_OF_REACH">Exibir lojas fora de alcance por colaborador</mat-radio-button>
+                    </div>
+                    <div class="pl-3">
+                        <mat-radio-button value="IDLE_COLLABORATOR">Exibir colaboradores sem rota para fazer</mat-radio-button>
+                    </div>
+                </mat-radio-group>
+            </div>
+            <div class="col">
+                <mat-form-field>
+                    <mat-select placeholder="Filtrar por cidade" [formControl]="cityControl" (selectionChange)="selectCity()">
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let city of (cities| async)" [value]="city.id">
+                            {{city.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
 
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro por colaborador">
