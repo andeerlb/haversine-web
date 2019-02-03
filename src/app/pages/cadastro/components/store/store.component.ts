@@ -1,41 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { CollaboratorService } from "./collaborator.service";
+import { StoreService } from "./store.service";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Collaborator } from '../../../../shared/models/collaborator.model';
 import { CadastroService } from '../../cadastro.service';
 
 @Component({
   selector: 'app-collaborator',
-  templateUrl: './collaborator.component.html',
-  styleUrls: ['./collaborator.component.scss'],
-  providers: [CollaboratorService, CadastroService]
+  templateUrl: './store.component.html',
+  styleUrls: ['./store.component.scss'],
+  providers: [StoreService, CadastroService]
 })
-export class CollaboratorComponent implements OnInit {
+export class StoreComponent implements OnInit {
 
-  collaboratorForm: FormGroup;
+  storeForm: FormGroup;
 
-  constructor(private _cadastroService: CadastroService, private _collaborator: CollaboratorService, private formBuilder: FormBuilder) {
+  constructor(private _cadastroService: CadastroService, private _storeService: StoreService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
-    this.collaboratorForm = this.formBuilder.group({
+    this.storeForm = this.formBuilder.group({
       name: ['', Validators.required],
       latitude: [0, Validators.required],
       longitude: [0, [Validators.required]]
     });
   }
 
-  get f() { return this.collaboratorForm.controls; }
+  get f() { return this.storeForm.controls; }
 
   getErrorMessage() {
     return this.f.name.hasError('required') ? 'O preenchimento do campo é obrigatório!' : 'O campo aceita apenas valores numéricos!';
   }
 
   onSubmit() {
-    if (this.collaboratorForm.invalid) {
+    if (this.storeForm.invalid) {
       console.log("is invalid form");
       return;
     }
-    this._cadastroService.alertRequest(this._collaborator.create(this.collaboratorForm.value as Collaborator));
+    this._cadastroService.alertRequest(this._storeService.create(this.storeForm.value));
   }
 }
