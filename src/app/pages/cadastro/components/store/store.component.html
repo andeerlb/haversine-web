@@ -14,6 +14,15 @@
         <input type="number" min="1" matInput placeholder="Longitude" formControlName="longitude">
         <mat-error *ngIf="f.longitude.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
+      
+      <mat-form-field>
+          <mat-select placeholder="Cidade" formControlName="city">
+              <mat-option *ngFor="let city of (cities| async)" [value]="city.id">
+                  {{city.name}}
+              </mat-option>
+          </mat-select>
+          <mat-error *ngIf="f.city.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
 
       <button class="btn btn-outline-secondary float-right mt-2" type="submit" [disabled]="storeForm.invalid">Cadastrar</button>
     </form>

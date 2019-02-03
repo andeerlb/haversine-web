@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material';
+import { Observable } from 'rxjs';
 import { EnumGroupByPossibleRouter } from '../../shared/models/enum-group-by-possible-router.model';
 import { GroupByPossibleRouter } from '../../shared/models/group-by-possible-router';
 import { RotasPossiveisService } from './rotas-possiveis.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import { DialogPossibleRouters } from './dialog-possible-routers.component';
-import { Observable } from 'rxjs';
-import { City } from 'src/app/shared/models/city.model';
+import { City } from '../../shared/models/city.model';
 
 @Component({
   selector: 'app-rotas-possiveis',
