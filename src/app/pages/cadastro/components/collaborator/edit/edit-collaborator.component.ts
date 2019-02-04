@@ -4,12 +4,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Collaborator } from '../../../../../shared/models/collaborator.model';
 import { CadastroService } from '../../../cadastro.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { City } from '../../../../../shared/models/city.model';
+import { RotasPossiveisService } from '../../../../rotas-possiveis/rotas-possiveis.service';
 
 @Component({
   selector: 'app-edit-collaborator',
   templateUrl: './edit-collaborator.component.html',
   styleUrls: ['./../collaborator.component.scss'],
-  providers: [CollaboratorService, CadastroService]
+  providers: [CollaboratorService, CadastroService, RotasPossiveisService]
 })
 export class EditCollaboratorComponent implements OnInit, OnDestroy {
 
@@ -17,10 +20,12 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
   id: Number;
   private sub: any;
   collaboratorForm: FormGroup;
+  cities: Observable<City>;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private _rotasPossiveisService: RotasPossiveisService,
     private _cadastroService: CadastroService, 
     private _collaborator: CollaboratorService, 
     private formBuilder: FormBuilder) {
@@ -31,7 +36,7 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
+    this.cities = this.listOfCities();
     this.sub = this.route.params.subscribe(params => {
       if(params['id'] != undefined){
         this.title = "Atualizar colaborador";
@@ -46,7 +51,8 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
       id: [undefined],
       name: ['', Validators.required],
       latitude: [0, Validators.required],
-      longitude: [0, [Validators.required]]
+      longitude: [0, [Validators.required]],
+      cityId: ['', Validators.required]
     });
   }
 
@@ -54,8 +60,9 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
     this._collaborator.getOne(id)
         .subscribe(
           (c: Collaborator) => {
-            console.log(c);
             this.collaboratorForm.patchValue(c);
+            console.log(this.collaboratorForm.value);
+            
           },
           e => console.error(e)
         )
@@ -77,6 +84,10 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
         this._collaborator.create(this.collaboratorForm.value as Collaborator) :
         this._collaborator.update(this.collaboratorForm.value as Collaborator)
       );
+  }
+
+  private listOfCities(): Observable<City> {
+    return this._rotasPossiveisService.listOfCities();
   }
 
   back(){
