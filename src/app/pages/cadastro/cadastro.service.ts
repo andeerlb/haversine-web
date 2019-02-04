@@ -37,7 +37,7 @@ export class CadastroService {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Sim, delete',
-      cancelButtonText: 'Não, cacenlar'
+      cancelButtonText: 'Não, cancelar'
     }).then((result) => {
       console.log('result: ', result);
       if (!result.value) {
