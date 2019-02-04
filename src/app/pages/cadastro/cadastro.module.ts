@@ -5,7 +5,8 @@ import { SharedModule } from '../../shared/shared.module';
 
 /* components */
 import { CadastroComponent } from './cadastro.component';
-import { CollaboratorComponent } from './components/collaborator/collaborator.component';
+import { EditCollaboratorComponent } from './components/collaborator/edit/edit-collaborator.component';
+import { ViewCollaboratorComponent } from './components/collaborator/view/view-collaborator.component';
 import { StoreComponent } from './components/store/store.component';
 import { CityComponent } from './components/city/city.component';
 
@@ -17,7 +18,8 @@ import { CityComponent } from './components/city/city.component';
     ],
     declarations: [
         CadastroComponent,
-        CollaboratorComponent,
+        EditCollaboratorComponent,
+        ViewCollaboratorComponent,
         StoreComponent,
         CityComponent
     ]
