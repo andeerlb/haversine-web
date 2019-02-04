@@ -3,12 +3,13 @@ import { MatTableDataSource } from '@angular/material';
 import { CollaboratorService } from '../collaborator.service';
 import { Collaborator } from '../../../../../shared/models/collaborator.model';
 import {Router, ActivatedRoute} from '@angular/router';
+import { CadastroService } from '../../../cadastro.service';
 
 @Component({
   selector: 'app-view-collaborator',
   templateUrl: './view-collaborator.component.html',
   styleUrls: ['./../collaborator.component.scss'],
-  providers: [CollaboratorService]
+  providers: [CollaboratorService, CadastroService]
 })
 export class ViewCollaboratorComponent implements OnInit {
 
@@ -17,6 +18,7 @@ export class ViewCollaboratorComponent implements OnInit {
   
   constructor(private router: Router, 
               private route: ActivatedRoute,
+              private _cadastroService: CadastroService,
               private _collaboratorService: CollaboratorService) {
   }
 
@@ -33,7 +35,7 @@ export class ViewCollaboratorComponent implements OnInit {
   }
 
   create(){
-    this.router.navigate(['./edit'], {relativeTo: this.route});
+    this.router.navigate(['./create'], {relativeTo: this.route});
   }
 
   edit(collaborator: Collaborator) {
@@ -43,15 +45,13 @@ export class ViewCollaboratorComponent implements OnInit {
 
   delete(colaborator: Collaborator) {
     console.log(colaborator);
-    this._collaboratorService.delete(colaborator)
-        .subscribe(
-          r => {
-            console.log(r)
-            if(r) {
-              this.getAll();
-            }
-          },
-          e => console.error(e)
-        );
+    this._cadastroService.deleteConfirm(this._collaboratorService.delete(colaborator))
+      .then(
+        () => {
+          this.getAll();
+        }
+      ).catch(
+        e => console.error(e)
+      );
   }
 }

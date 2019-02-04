@@ -16,7 +16,7 @@ const childRoutes: Routes = [
             { path: 'collaborator',
                 children: [
                     { path: '', component: ViewCollaboratorComponent},
-                    { path: 'edit', component: EditCollaboratorComponent},
+                    { path: 'create', component: EditCollaboratorComponent},
                     { path: 'edit/:id', component: EditCollaboratorComponent},
                     { path: 'view', component: ViewCollaboratorComponent},
                 ]
