@@ -33,7 +33,7 @@ export class ViewCollaboratorComponent implements OnInit {
   }
 
   create(){
-    this.router.navigate(['./edit'], {relativeTo: this.route});
+    this.router.navigate(['./create'], {relativeTo: this.route});
   }
 
   edit(collaborator: Collaborator) {
