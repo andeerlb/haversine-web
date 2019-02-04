@@ -27,4 +27,8 @@ export class CollaboratorService {
         parameters = parameters.append('id', id);
         return this.http.get(`${env.api}/collaborator`, {params: parameters}) as Observable<Collaborator>;
     }
+
+    delete(collaborator: Collaborator): Observable<Collaborator> {
+        return this.http.delete(`${env.api}/collaborator/${collaborator.id}`) as Observable<Collaborator>;
+     }
 }

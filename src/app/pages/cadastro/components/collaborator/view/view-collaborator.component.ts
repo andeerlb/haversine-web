@@ -12,7 +12,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class ViewCollaboratorComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'latitude', 'longitude', 'city','router'];
+  displayedColumns: string[] = ['position', 'name', 'latitude', 'longitude', 'city','edit', 'delete'];
   dataSource = new MatTableDataSource();
   
   constructor(private router: Router, 
@@ -39,5 +39,19 @@ export class ViewCollaboratorComponent implements OnInit {
   edit(collaborator: Collaborator) {
     console.log(collaborator);
     this.router.navigate(['./edit', collaborator.id], {relativeTo: this.route});
+  }
+
+  delete(colaborator: Collaborator) {
+    console.log(colaborator);
+    this._collaboratorService.delete(colaborator)
+        .subscribe(
+          r => {
+            console.log(r)
+            if(r) {
+              this.getAll();
+            }
+          },
+          e => console.error(e)
+        );
   }
 }

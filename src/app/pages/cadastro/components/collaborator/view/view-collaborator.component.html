@@ -1,5 +1,5 @@
 <card cardTitle="Colaboradores cadastrados">
-<button class="btn btn-outline-secondary float-right m-3" (click)="create()">Cadastrar novo colaborador</button>
+    <button class="btn btn-outline-secondary float-right m-3" (click)="create()">Cadastrar novo colaborador</button>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Position Column -->
@@ -32,13 +32,22 @@
             <td mat-cell *matCellDef="let element"> {{element.city}}</td>
         </ng-container>
 
-        <!-- Routers -->
-        <ng-container matColumnDef="router">
+        <!-- Edit -->
+        <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef> Editar</th>
             <td mat-cell *matCellDef="let element">
                 <button class="btn btn-outline-secondary" (click)="edit(element)" mat-raised-button>
-                    <img src="assets/iconfonts/edit.svg"
-                        width="20px">
+                    <img src="assets/iconfonts/edit.svg" width="20px">
+                </button>
+            </td>
+        </ng-container>
+
+        <!-- Delete -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Excluir</th>
+            <td mat-cell *matCellDef="let element">
+                <button class="btn btn-outline-secondary" (click)="delete(element)" mat-raised-button>
+                    <img src="assets/iconfonts/delete.svg" width="20px">
                 </button>
             </td>
         </ng-container>
