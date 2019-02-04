@@ -1,4 +1,6 @@
-<card cardTitle="Cadastrar colaborador">
+<card [cardTitle]="title">
+    <button class="btn btn-outline-secondary float-right m-3" (click)="back()">Voltar</button>
+    
     <form class="container" [formGroup]="collaboratorForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
         <input matInput placeholder="Nome" formControlName="name">
@@ -15,6 +17,6 @@
         <mat-error *ngIf="f.longitude.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
 
-      <button class="btn btn-outline-secondary float-right mt-2" type="submit" [disabled]="collaboratorForm.invalid">Cadastrar</button>
+      <button class="btn btn-outline-secondary float-right mt-2" type="submit" [disabled]="collaboratorForm.invalid">{{id == undefined ? 'Cadastrar' : 'Atualizar'}}</button>
     </form>
 </card>
