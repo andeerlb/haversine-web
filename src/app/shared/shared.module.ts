@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { JsonpModule } from '@angular/http';
 
@@ -19,18 +19,16 @@ import { MatOptionModule } from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
-import { HttpClientModule } from '@angular/common/http';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   imports: [
-    HttpClientModule, 
     CommonModule,
     NgxPaginationModule,
-    FormsModule,
     ReactiveFormsModule,
+    FormsModule,
     JsonpModule,
   ],
   declarations: [
@@ -62,7 +60,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSlideToggleModule,
     MatDialogModule,
     MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule { }

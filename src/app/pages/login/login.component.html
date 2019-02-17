@@ -1,0 +1,18 @@
+<div id="full-card-login">
+  <p *ngIf="badCredencials" class="text-center text-danger bg-dark pt-3 pb-3">Usuário e/ou Senha inválido(s)</p>
+  <div class="container-login">
+    <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="submit(loginForm.value);">
+      <mat-form-field>
+        <input matInput formControlName="username" placeholder="Usuário">
+        <mat-error *ngIf="f.username.invalid">{{getErrorMessage(f.username, 'username')}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput formControlName="password" placeholder="Senha">
+        <mat-error *ngIf="f.password.invalid">{{getErrorMessage(f.password, 'password')}}</mat-error>
+      </mat-form-field>
+
+      <button type="submit" class="btn btn-primary float-right" [disabled]="loginForm.invalid || send === true">Entrar</button>
+    </form>
+  </div>
+</div>

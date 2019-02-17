@@ -1,19 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { PagesModule } from './pages/pages.module';
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { AuthInterceptor } from '../app/shared/services/auth/auth-interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
+    HttpClientModule, 
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
     PagesModule,
     routing
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   declarations: [
     AppComponent,
