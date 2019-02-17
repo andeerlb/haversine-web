@@ -5,6 +5,7 @@ import { User } from '../../shared/models/user';
 import { TokenStorage } from '../../shared/services/auth/token-storage';
 import { AuthToken } from '../../shared/models/auth-token.model';
 import { timingSafeEqual } from 'crypto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, 
               private _loginService: LoginService,
               private _tokenStorage: TokenStorage,
+              private _router: Router
               ) { }
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class LoginComponent implements OnInit {
     this._loginService.authenticate(user).toPromise()
         .then((token: AuthToken) => {
           this._tokenStorage.save(token);
+          this._router.navigateByUrl('');
         }).catch(() => {
           this.send = false;
           this.badCredencials = true;
