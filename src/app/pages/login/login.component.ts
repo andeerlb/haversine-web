@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LoginService } from './login.service';
 import { User } from '../../shared/models/user';
 import { TokenStorage } from '../../shared/services/auth/token-storage';
 import { AuthToken } from '../../shared/models/auth-token.model';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ import { AuthToken } from '../../shared/models/auth-token.model';
 })
 export class LoginComponent implements OnInit {
 
+  @ViewChild ('username') inptUsername: ElementRef;
+  
   loginForm: FormGroup;
   send: boolean = false;
   badCredencials = false;
@@ -55,6 +58,8 @@ export class LoginComponent implements OnInit {
             this.badCredencials = false;
           }, 2000);
           this.loginForm.enable();
+          this.inptUsername.nativeElement.focus(); 
+          this.inptUsername.nativeElement.select(); 
         });
   }
 }

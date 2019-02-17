@@ -1,9 +1,9 @@
 <div id="full-card-login">
-  <p *ngIf="badCredencials" class="text-center text-danger bg-dark pt-3 pb-3">Usuário e/ou Senha inválido(s)</p>
+  <p [style.opacity]="badCredencials ? '1' : '0'" class="bad-credencials text-center text-danger bg-dark pt-3 pb-3 position-absolute w-100">Usuário e/ou Senha inválido(s)</p>
   <div class="container-login">
     <form [formGroup]="loginForm" class="form-signin" (ngSubmit)="submit(loginForm.value);">
       <mat-form-field>
-        <input matInput formControlName="username" placeholder="Usuário">
+        <input #username matInput formControlName="username" placeholder="Usuário">
         <mat-error *ngIf="f.username.invalid">{{getErrorMessage(f.username, 'username')}}</mat-error>
       </mat-form-field>
 
