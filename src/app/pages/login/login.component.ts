@@ -4,7 +4,6 @@ import { LoginService } from './login.service';
 import { User } from '../../shared/models/user';
 import { TokenStorage } from '../../shared/services/auth/token-storage';
 import { AuthToken } from '../../shared/models/auth-token.model';
-import { timingSafeEqual } from 'crypto';
 import { Router } from '@angular/router';
 
 @Component({
