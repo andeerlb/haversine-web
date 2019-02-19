@@ -25,9 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
       token = this._tokenStorage.get().access_token;
       req = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token) });
     } catch(err) {
-      console.error(`token not found - ${err}`);
       this._tokenStorage.remove();
-
       if(!req.params.has('grant_type')){
         this._router.navigateByUrl("/login");
       }
