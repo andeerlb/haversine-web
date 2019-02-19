@@ -41,7 +41,6 @@ export class SidebarComponent implements OnInit {
 
   }
 
-  /* 初始化 判断当前路由状态信息 首次加载菜单状态 */
   _isSelectItem(item) {
     for (const i in item) {
       if (item[i].children) {
@@ -55,6 +54,17 @@ export class SidebarComponent implements OnInit {
         }
       }
     }
+  }
+
+  public _sidebarToggleBtn() {
+    this._globalService.data$.subscribe(data => {
+      if (data.ev === 'sidebarToggle') {
+        this.sidebarToggle = data.value;
+      }
+    }, error => {
+      console.log('Error: ' + error);
+    });
+    this._globalService.dataBusChanged('sidebarToggle', !this.sidebarToggle);
   }
 
 }

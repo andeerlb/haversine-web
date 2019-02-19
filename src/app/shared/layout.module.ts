@@ -8,6 +8,7 @@ import { GlobalService } from './services/global.service';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MenuComponent } from './layouts/menu/menu.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import { PagesTopComponent } from './layouts/pages-top/pages-top.component';
 
 @NgModule({
     imports: [
@@ -21,11 +22,13 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     declarations: [
         MenuComponent,
         SidebarComponent,
-        LoadingComponent
+        LoadingComponent,
+        PagesTopComponent
     ],
     exports: [
         SidebarComponent,
-        LoadingComponent
+        LoadingComponent,
+        PagesTopComponent
     ]
 })
 export class LayoutModule { }
