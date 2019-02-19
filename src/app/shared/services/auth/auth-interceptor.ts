@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { TokenStorage } from './token-storage';
+import { Router } from '@angular/router';
 import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-  HttpResponse,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { TokenStorage } from './token-storage';
-import { map, catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import 'rxjs/add/operator/do';
 
 @Injectable({providedIn: "root"})
 export class AuthInterceptor implements HttpInterceptor {
@@ -39,6 +39,11 @@ export class AuthInterceptor implements HttpInterceptor {
       req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
     }
 
-    return next.handle(req);
+    return next.handle(req)
+            .do(() => {}, (err: any) => {
+              if (err instanceof HttpErrorResponse) {
+                console.error('error in HttpRequest');
+              }
+          });
   }
 }
