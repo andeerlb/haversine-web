@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [LoginService, TokenStorage]
+  providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
 

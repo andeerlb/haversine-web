@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  template: `<router-outlet></router-outlet>`,
-  providers: [TokenStorage]
+  template: `<router-outlet></router-outlet>`
 })
 export class AppComponent implements OnInit{
   title = 'app';

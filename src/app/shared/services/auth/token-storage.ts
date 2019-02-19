@@ -4,7 +4,7 @@ import { AuthToken } from '../../models/auth-token.model';
 
 const TOKEN_KEY = 'authToken';
 
-@Injectable()
+@Injectable({providedIn: "root"})
 export class TokenStorage {
 
   constructor() { }
