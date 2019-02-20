@@ -1,4 +1,9 @@
 <div class="pages-sider" [ngClass]="{'side-collapsed':!sidebarToggle}">
   <span class="sidebar-top-line"></span>
   <du-menu [menuInfo]="menuInfo"></du-menu>
+
+  <div class="collapse-menu" [ngClass]="{'collapse-menu-hide':!sidebarToggle}" (click)="_sidebarToggleBtn()">
+    <i class="fa fa-dedent fa-fw" *ngIf="sidebarToggle"></i>
+    <i class="fa fa-indent fa-fw" *ngIf="!sidebarToggle"></i>
+  </div>
 </div>
