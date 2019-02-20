@@ -1,5 +1,4 @@
-<card [cardTitle]="title">
-  <button class="btn btn-primary float-right m-3" (click)="back()">Voltar</button>
+<card [cardTitle]="title" [navigate]="back.bind(this)" backButton="true">
 
   <form class="container" [formGroup]="collaboratorForm" (ngSubmit)="onSubmit()">
     <mat-form-field>

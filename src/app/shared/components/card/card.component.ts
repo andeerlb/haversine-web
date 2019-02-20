@@ -1,18 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { collapse } from '../../animation/collapse-animate';
+import { Component, Input } from '@angular/core'; 
 
 @Component({
   selector: 'card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.scss'],
-  animations: [collapse]
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
   @Input() cardTitle: any;
-  @Input() isCollapse: boolean = false;
-  collapse: string = 'on';
-
-  private collapseCard() {
-    this.collapse === 'on' ? this.collapse = 'off' : this.collapse = 'on';
-  }
+  @Input() navigate: Function;
+  @Input() titleNavigate: string;
+  @Input() backButton: boolean;
 }
