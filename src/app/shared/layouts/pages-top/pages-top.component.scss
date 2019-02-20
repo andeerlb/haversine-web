@@ -7,17 +7,20 @@
     border: none;
 }
 
-.avatar-wrap {
+.center {
     position: absolute;
     top: 50%;
-    right: 10px;
+    margin: 0 auto;
     transform: translate(0, -50%);
     padding: 15px 0;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     height: auto;
     min-height: 50px;
+}
+
+.avatar-wrap {
+    right: 10px;
     @include transition(all .4s);
     .avatar {
         width: 50px;
