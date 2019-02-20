@@ -12,7 +12,7 @@
     "build": "ng build --base-href ./",
     "build:prod": "ng build --prod --base-href ./",
     "build:ci": "ng build --prod --base-href ./",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "npm install && ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
