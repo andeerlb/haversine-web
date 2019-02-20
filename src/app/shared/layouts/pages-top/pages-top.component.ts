@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PagesTopService } from './pages-top.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import { TokenStorage } from '../../services/auth/token-storage';
 
 @Component({
   selector: 'pages-top',
@@ -15,7 +16,7 @@ export class PagesTopComponent implements OnInit {
   username: string = 'Unknow username';
 
   sidebarToggle: boolean = true;
-  constructor(private _service: PagesTopService, private _router: Router) { }
+  constructor(private _service: PagesTopService, private _router: Router, private _tokenStorage: TokenStorage) { }
 
   ngOnInit(): void {
     this._service.getUserLogged().toPromise()
@@ -31,6 +32,7 @@ export class PagesTopComponent implements OnInit {
     this._service.logout().toPromise()
           .then(() => {
             console.log('loggout');
+            this._tokenStorage.remove();
             this._router.navigateByUrl("/login");
           }).catch((e) => {
             console.error('impossible to execute loggout');
