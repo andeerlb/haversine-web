@@ -1,6 +1,4 @@
-<card cardTitle="Colaboradores cadastrados">
-    <button class="btn btn-primary float-right m-3" (click)="create()">Cadastrar novo colaborador</button>
-
+<card cardTitle="Colaboradores cadastrados" [navigate]="create.bind(this)" titleNavigate="Cadastrar novo colaborador">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <!-- Position Column -->
         <ng-container matColumnDef="position">

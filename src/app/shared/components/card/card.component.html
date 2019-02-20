@@ -1,14 +1,13 @@
 <div class="card animated fadeIn">
   <div class="card-header" *ngIf="cardTitle">
     <h4 class="card-title">{{cardTitle}}</h4>
-    <div class="btn-group" *ngIf="cardTitle&&isCollapse">
-      <button class="collapse-btn" (click)="collapseCard()">
-        <i class="fa fa-minus fa-fw" [ngClass]="{'collapse-on':collapse === 'on','collapse-off':collapse === 'off'}"></i>
-        <i class="fa fa-plus fa-fw" [ngClass]="{'collapse-on':collapse === 'off','collapse-off':collapse === 'on'}"></i>
+    <div class="btn-group" *ngIf="cardTitle&&(titleNavigate || backButton)">
+      <button class="btn btn-primary btn-card float-right btn-sm" (click)="navigate()">
+        {{(titleNavigate && !backButton ? titleNavigate : 'Voltar')}}
       </button>
     </div>
   </div>
-  <div class="content-wrap" [@collapse]="collapse">
+  <div class="content-wrap">
     <div class="card-content">
       <ng-content></ng-content>
     </div>
