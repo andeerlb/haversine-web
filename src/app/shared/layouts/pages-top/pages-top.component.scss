@@ -16,7 +16,6 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    width: 240px;
     height: auto;
     min-height: 50px;
     @include transition(all .4s);
@@ -33,7 +32,7 @@
     }
     .user-info-wrap {
         padding: 2px 14px;
-        width: 170px;
+        max-width: 250px;
         height: auto;
         text-align: right;
         @include transition(all .4s);
@@ -62,14 +61,8 @@
         .avatar {
             border-radius: 50px;
         }
-        .user-info-wrap {
-            display: none;
-        }
     }
     .collapse-menu {
         left: 100px;
-    }
-    .search-group {
-        display: none;
     }
 }
