@@ -9,7 +9,6 @@ import { City } from '../../../../../shared/models/city.model';
 import { RotasPossiveisService } from '../../../../rotas-possiveis/rotas-possiveis.service';
 
 @Component({
-  selector: 'app-edit-collaborator',
   templateUrl: './edit-collaborator.component.html',
   styleUrls: ['./../collaborator.component.scss'],
   providers: [CollaboratorService, CadastroService, RotasPossiveisService]

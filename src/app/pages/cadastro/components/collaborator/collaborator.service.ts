@@ -30,5 +30,5 @@ export class CollaboratorService {
 
     delete(collaborator: Collaborator): Observable<Collaborator> {
         return this.http.delete(`${env.api}/collaborator/${collaborator.id}`) as Observable<Collaborator>;
-     }
+    }
 }
