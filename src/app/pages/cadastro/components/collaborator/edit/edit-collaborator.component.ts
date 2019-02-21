@@ -9,7 +9,6 @@ import { City } from '../../../../../shared/models/city.model';
 import { RotasPossiveisService } from '../../../../rotas-possiveis/rotas-possiveis.service';
 
 @Component({
-  selector: 'app-edit-collaborator',
   templateUrl: './edit-collaborator.component.html',
   styleUrls: ['./../collaborator.component.scss'],
   providers: [CollaboratorService, CadastroService, RotasPossiveisService]
@@ -80,9 +79,9 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
       return;
     }
     this._cadastroService.alertRequest(
-      this.id === undefined ? 
+      (this.id === undefined ? 
         this._collaborator.create(this.collaboratorForm.value as Collaborator) :
-        this._collaborator.update(this.collaboratorForm.value as Collaborator)
+        this._collaborator.update(this.collaboratorForm.value as Collaborator)), this.back.bind(this)
       );
   }
 

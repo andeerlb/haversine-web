@@ -6,7 +6,6 @@ import {Router, ActivatedRoute} from '@angular/router';
 import { CadastroService } from '../../../cadastro.service';
 
 @Component({
-  selector: 'app-view-collaborator',
   templateUrl: './view-collaborator.component.html',
   styleUrls: ['./../collaborator.component.scss'],
   providers: [CollaboratorService, CadastroService]
