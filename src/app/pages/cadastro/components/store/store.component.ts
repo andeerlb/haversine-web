@@ -45,6 +45,6 @@ export class StoreComponent implements OnInit {
       console.log("is invalid form");
       return;
     }
-    this._cadastroService.alertRequest(this._storeService.create(this.storeForm.value));
+    this._cadastroService.alertRequest(this._storeService.create(this.storeForm.value), function() {alert('not function')});
   }
 }

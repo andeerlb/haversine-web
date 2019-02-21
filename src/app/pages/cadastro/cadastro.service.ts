@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CadastroService {
 
-  public alertRequest(req: Observable<any>): void {
+  public alertRequest(req: Observable<any>, callBack: Function): void {
     swal({
       title: 'Cadastrando...',
       text: 'Por favor, aguarde... Estamos processando sua solicitação.',
@@ -16,7 +16,9 @@ export class CadastroService {
         req.subscribe(
           c => {
             swal.hideLoading();
-            this.requestSucess();
+            this.requestSucess().then(() => {
+              callBack();
+            });
           },
           e => {
             swal.hideLoading();
@@ -65,16 +67,16 @@ export class CadastroService {
     });
   }
 
-  private requestSucess(): void {
-    swal({
+  private requestSucess(): Promise<SweetAlertResult> {
+    return swal({
       type: 'success',
       title: 'Sucesso...',
       text: 'Cadastro realizado com sucesso!',
     });
   }
 
-  private requestError(msgError: string): void {
-    swal({
+  private requestError(msgError: string): Promise<SweetAlertResult> {
+    return swal({
       type: 'error',
       title: 'Desculpe...',
       text: msgError

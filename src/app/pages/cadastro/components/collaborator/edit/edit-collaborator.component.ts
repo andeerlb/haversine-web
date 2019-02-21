@@ -79,9 +79,9 @@ export class EditCollaboratorComponent implements OnInit, OnDestroy {
       return;
     }
     this._cadastroService.alertRequest(
-      this.id === undefined ? 
+      (this.id === undefined ? 
         this._collaborator.create(this.collaboratorForm.value as Collaborator) :
-        this._collaborator.update(this.collaboratorForm.value as Collaborator)
+        this._collaborator.update(this.collaboratorForm.value as Collaborator)), this.back.bind(this)
       );
   }
 

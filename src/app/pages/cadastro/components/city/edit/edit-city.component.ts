@@ -58,9 +58,9 @@ export class EditCityComponent implements OnInit, OnDestroy {
       return;
     }
     this._cadastroService.alertRequest(
-      this.id === undefined ? 
+      (this.id === undefined ? 
         this._cityService.create(this.cityForm.value as City) :
-        this._cityService.update(this.cityForm.value as City)
+        this._cityService.update(this.cityForm.value as City)), this.back.bind(this)
       );
   }
 
