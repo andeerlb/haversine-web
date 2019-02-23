@@ -35,7 +35,7 @@
     "@angular/router": "^7.2.3",
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "animate.css": "^3.5.2",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.4.1",
     "echarts": "^4.2.0-rc.2",
     "express": "^4.16.4",
@@ -48,6 +48,7 @@
     "ngx-pagination": "^3.0.3",
     "normalize.css": "^8.0.1",
     "pell": "^1.0.4",
+    "popper.js": "^1.14.7",
     "roboto-fontface": "^0.10.0",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.0.0-rc.0",
@@ -74,7 +75,6 @@
     "rxjs-tslint": "^0.1.6",
     "ts-node": "~8.0.2",
     "tslint": "~5.12.1",
-    "typescript": "^3.2.4",
-    "webpack": "^4.29.0"
+    "typescript": "^3.2.4"
   }
 }
