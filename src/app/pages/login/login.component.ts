@@ -46,9 +46,6 @@ export class LoginComponent implements OnInit {
     this.send = true;
     this.loginForm.disable();
 
-    user.client_id = 'marcelos_client';
-    user.client_secret = '123';
-
     clearTimeout(this.timeOut);
     this._loginService.authenticate(user).toPromise()
         .then((token: AuthToken) => {

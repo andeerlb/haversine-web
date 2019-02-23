@@ -8,7 +8,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput formControlName="password" placeholder="Senha">
+        <input matInput type="password" formControlName="password" placeholder="Senha">
         <mat-error *ngIf="f.password.invalid">{{getErrorMessage(f.password, 'password')}}</mat-error>
       </mat-form-field>
 
