@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { CustomDataTableColumn } from '../../models/custom-data-table-column.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CadastroService } from '../../../pages/cadastro/cadastro.service';
@@ -23,6 +22,7 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
 
   private onlyDisplayColumnsName: string[];
   rows: any[];
+  showDataTable: boolean = false;
 
   constructor(private _router: Router, private _cadastroService: CadastroService, private _route: ActivatedRoute) { }
 
@@ -32,13 +32,14 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log('unsubscribe getAll datatable');
+    this.showDataTable = false;
   }
 
   private dataTableGetAll(): void {
     this.getAll().subscribe(
       value => {
         this.rows = value;
+        this.showDataTable = true;  
       }
     );
   }
@@ -49,9 +50,10 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
 
   public dataTableDelete(row, index){
     this._cadastroService.deleteConfirm(this.delete(row))
-      .then(() => {
+      .then((value) => {
+        console.log(value);
         this.rows.splice(index, 1);
-    });
+    }).catch((e) => console.error(e));
   }
 
   public checkPropertyExistsOnArrayColumns(row: object): string[] {
