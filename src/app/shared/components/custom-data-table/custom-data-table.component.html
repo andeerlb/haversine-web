@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of (rows | async);  let i = index;">
+    <tr *ngFor="let row of rows;  let i = index;">
       <td><strong>{{i+1}}</strong></td>
       <td *ngFor="let rowValue of checkPropertyExistsOnArrayColumns(row)">{{rowValue}}</td>
       <td>
@@ -17,7 +17,7 @@
         </button>
       </td>
       <td>
-        <button class="btn btn-outline-secondary" (click)="dataTableDelete(row)" mat-raised-button>
+        <button class="btn btn-outline-secondary" (click)="dataTableDelete(row, i)" mat-raised-button>
             <img src="assets/iconfonts/delete.svg" width="20px">
         </button>
       </td>

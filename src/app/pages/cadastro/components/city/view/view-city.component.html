@@ -1,8 +1,7 @@
 <card emptyCardContent="true" cardTitle="Cidades cadastradas" [navigate]="create.bind(this)" titleNavigate="Cadastrar nova cidade">
 
     <app-custom-data-table [displayedColumns]="displayedColumns" 
-                            [getAll]="getAll.bind(this)" 
-                            [edit]="route" 
+                            [getAll]="getAll.bind(this)"
                             [delete]="delete.bind(this)">
     </app-custom-data-table>
 </card>

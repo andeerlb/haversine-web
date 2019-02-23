@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { CustomDataTableColumn } from '../../models/custom-data-table-column.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CadastroService } from '../../../pages/cadastro/cadastro.service';
@@ -19,15 +19,12 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
   private getAll: Function;
 
   @Input()
-  private edit: ActivatedRoute;
-
-  @Input()
   private delete: Function;
 
   private onlyDisplayColumnsName: string[];
-  rows: Observable<any>;
+  rows: any[];
 
-  constructor(private _router: Router, private _cadastroService: CadastroService) { }
+  constructor(private _router: Router, private _cadastroService: CadastroService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this.dataTableGetAll();
@@ -39,20 +36,31 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
   }
 
   private dataTableGetAll(): void {
-    this.rows = this.getAll();
+    this.getAll().subscribe(
+      value => {
+        this.rows = value;
+      }
+    );
   }
 
   public dataTableEdit(row) {
-    this._router.navigate(['./edit', row.id], {relativeTo: this.edit});
+    this._router.navigate(['./edit', row.id], {relativeTo: this._route});
   }
 
-  public dataTableDelete(row){
-    this._cadastroService.deleteConfirm(this.delete(row));
+  public dataTableDelete(row, index){
+    this._cadastroService.deleteConfirm(this.delete(row))
+      .then(() => {
+        this.rows.splice(index, 1);
+    });
   }
 
   public checkPropertyExistsOnArrayColumns(row: object): string[] {
-      return Object.keys(row)
-                  .filter(keyName => this.onlyDisplayColumnsName.includes(keyName))
-                  .map(keyName => row[keyName]);
+      let keysObject = Object.keys(row)
+                  .filter(keyName => this.onlyDisplayColumnsName.includes(keyName));
+
+      let keysPrototype = this.onlyDisplayColumnsName.filter(key => !keysObject.includes(key));                  
+      keysPrototype.forEach(key => row[key] = "");
+
+      return keysObject.map(key => row[key]);
   }
 }

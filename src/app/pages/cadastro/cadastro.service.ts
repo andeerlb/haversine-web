@@ -41,7 +41,6 @@ export class CadastroService {
       confirmButtonText: 'Sim, delete',
       cancelButtonText: 'Não, cancelar'
     }).then((result) => {
-      console.log('result: ', result);
       if (!result.value) {
         return Promise.reject(result.dismiss);
       }
@@ -61,7 +60,6 @@ export class CadastroService {
           e => {
             swal.hideLoading();
             this.requestError('Não foi possível excluir o registro.');
-            console.error(e);
           }
         )
     });

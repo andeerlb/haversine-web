@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import {Router, ActivatedRoute} from '@angular/router';
 import { CityService } from '../city.service';
 import { City } from '../../../../../shared/models/city.model';
 import { Observable } from 'rxjs';
-import { CustomDataTable } from 'src/app/shared/components/custom-data-table/custom-data-table.interface';
+import { CustomDataTable } from '../../../../../shared/components/custom-data-table/custom-data-table.interface';
 import { CustomDataTableColumn } from '../../../../../shared/models/custom-data-table-column.model';
 
 @Component({
@@ -17,8 +16,6 @@ export class ViewCityComponent implements OnInit, CustomDataTable {
   displayedColumns: CustomDataTableColumn[] = [
     new CustomDataTableColumn("name", "nome")
   ];
-
-  dataSource = new MatTableDataSource();
   
   constructor(private router: Router, 
               public route: ActivatedRoute,
