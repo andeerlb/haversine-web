@@ -7,8 +7,8 @@
       </button>
     </div>
   </div>
-  <div class="content-wrap">
-    <div class="card-content">
+  <div [ngClass]="emptyCardContent ? '' : 'content-wrap'">
+    <div [ngClass]="emptyCardContent ? '' : 'card-content'">
       <ng-content></ng-content>
     </div>
   </div>

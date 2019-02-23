@@ -1,39 +1,8 @@
-<card cardTitle="Cidades cadastradas" [navigate]="create.bind(this)" titleNavigate="Cadastrar nova cidade">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-            <th mat-header-cell *matHeaderCellDef>Linha </th>
-            <td mat-cell *matCellDef="let element; let i = index;"><strong>#{{i+1}}</strong></td>
-        </ng-container>
+<card emptyCardContent="true" cardTitle="Cidades cadastradas" [navigate]="create.bind(this)" titleNavigate="Cadastrar nova cidade">
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Nome </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-
-        <!-- Edit -->
-        <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef>Editar</th>
-            <td mat-cell *matCellDef="let element">
-                <button class="btn btn-outline-secondary" (click)="edit(element)" mat-raised-button>
-                    <img src="assets/iconfonts/edit.svg" width="20px">
-                </button>
-            </td>
-        </ng-container>
-
-        <!-- Delete -->
-        <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef>Excluir</th>
-            <td mat-cell *matCellDef="let element">
-                <button class="btn btn-outline-secondary" (click)="delete(element)" mat-raised-button>
-                    <img src="assets/iconfonts/delete.svg" width="20px">
-                </button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-
+    <app-custom-data-table [displayedColumns]="displayedColumns" 
+                            [getAll]="getAll.bind(this)" 
+                            [edit]="route" 
+                            [delete]="delete.bind(this)">
+    </app-custom-data-table>
 </card>
