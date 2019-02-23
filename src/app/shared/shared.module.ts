@@ -22,6 +22,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import { CustomDataTableComponent } from './components/custom-data-table/custom-data-table.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import {MatRadioModule} from '@angular/material/radio';
     ProgressBarComponent,
     SwitchComponent,
     AlertComponent,
-    WeatherComponent
+    WeatherComponent,
+    CustomDataTableComponent
   ],
   exports: [
     CardComponent,
@@ -61,7 +63,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDialogModule,
     MatRadioModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    CustomDataTableComponent
   ]
 })
 export class SharedModule { }

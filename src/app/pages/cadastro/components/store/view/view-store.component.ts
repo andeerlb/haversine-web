@@ -1,56 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import {Router, ActivatedRoute} from '@angular/router';
-import { CadastroService } from '../../../cadastro.service';
 import { Store } from '../../../../../shared/models/store.model';
 import { StoreService } from '../store.service';
+import { CustomDataTableColumn } from '../../../../../shared/models/custom-data-table-column.model';
+import { CustomDataTable } from '../../../../../shared/components/custom-data-table/custom-data-table.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './view-store.component.html',
   styleUrls: ['./../store.component.scss'],
-  providers: [StoreService, CadastroService]
+  providers: [StoreService]
 })
-export class ViewStoreComponent implements OnInit {
+export class ViewStoreComponent  implements OnInit, CustomDataTable{
 
-  displayedColumns: string[] = ['position', 'name', 'latitude', 'longitude', 'edit', 'delete'];
-  dataSource = new MatTableDataSource();
+  displayedColumns: CustomDataTableColumn[] = [
+    new CustomDataTableColumn("name", "nome"),
+    new CustomDataTableColumn("latitude", "latitude"),
+    new CustomDataTableColumn("longitude", "longitude")
+  ];
   
   constructor(private router: Router, 
               private route: ActivatedRoute,
-              private _cadastroService: CadastroService,
               private _storeService: StoreService) {
   }
 
   ngOnInit() {
-    this.getAll();
   }
 
-  private getAll(): void {
-    this._storeService.getAll()
-        .subscribe(
-          store => this.dataSource = store as any,
-      errors => console.log(errors)
-    );
+  getAll(): Observable<any> {
+    return this._storeService.getAll();
   }
 
   create(){
     this.router.navigate(['./create'], {relativeTo: this.route});
   }
 
-  edit(store: Store) {
-    console.log(store);
-    this.router.navigate(['./edit', store.id], {relativeTo: this.route});
-  }
-
-  delete(store: Store) {
-    console.log(store);
-    this._cadastroService.deleteConfirm(this._storeService.delete(store))
-      .then(
-        () => {
-          this.getAll();
-        }
-      ).catch(
-        e => console.error(e)
-      );
+  delete(store: Store): Observable<any> {
+    return this._storeService.delete(store);
   }
 }

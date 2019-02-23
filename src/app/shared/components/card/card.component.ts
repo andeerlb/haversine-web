@@ -10,4 +10,5 @@ export class CardComponent {
   @Input() navigate: Function;
   @Input() titleNavigate: string;
   @Input() backButton: boolean;
+  @Input() emptyCardContent: boolean;
 }
