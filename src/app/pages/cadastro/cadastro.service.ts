@@ -16,7 +16,7 @@ export class CadastroService {
         req.subscribe(
           c => {
             swal.hideLoading();
-            this.requestSucess().then(() => {
+            this.requestSucess('Cadastro realizado com sucesso!').then(() => {
               callBack();
             });
           },
@@ -48,36 +48,30 @@ export class CadastroService {
       return req.toPromise()
         .then(
           () => {
-            {
-              swal(
-                'Deletado!',
-                'Seu registro foi excluido com sucesso!',
-                'success'
-              );
-            }
+            return this.requestSucess('Seu registro foi excluido com sucesso!');
           }
         ).catch(
           e => {
             swal.hideLoading();
-            this.requestError('Não foi possível excluir o registro.');
+            return this.requestError('Não foi possível excluir o registro.');
           }
         )
     });
   }
 
-  private requestSucess(): Promise<SweetAlertResult> {
+  private requestSucess(msgSuccess: string): Promise<string> {
     return swal({
       type: 'success',
       title: 'Sucesso...',
-      text: 'Cadastro realizado com sucesso!',
-    });
+      text: msgSuccess,
+    }).then(() => Promise.resolve(msgSuccess));
   }
 
-  private requestError(msgError: string): Promise<SweetAlertResult> {
+  private requestError(msgError: string): Promise<string> {
     return swal({
       type: 'error',
       title: 'Desculpe...',
       text: msgError
-    });
+    }).then(() => Promise.reject(msgError));
   }
 }
