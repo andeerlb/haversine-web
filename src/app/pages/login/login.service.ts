@@ -10,7 +10,7 @@ export class LoginService {
 
     authenticate(user: User) {
         const httpHeaders = new HttpHeaders()
-                    .set('Authorization',`Basic ${btoa(`${user.client_id}:${user.client_secret}`)}`)
+                    .set('Authorization','Basic c3lzdGVtX2FkbWluOmFkbWlu')
 
         const httpParams = new HttpParams()
                     .set('username', user.username)
