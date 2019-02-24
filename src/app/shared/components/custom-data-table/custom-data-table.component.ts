@@ -12,10 +12,10 @@ import { Pageable } from '../../models/pageable.model';
 })
 export class CustomDataTableComponent implements OnInit, OnDestroy {
 
-  @Input() 
+  @Input()
   displayedColumns: CustomDataTableColumn[];
 
-  @Input() 
+  @Input()
   private getAll: Function;
 
   @Input()
@@ -47,42 +47,61 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
     this.getAll(this.pageable).subscribe(
       value => {
         this.rows = value.content;
-        this.pageable = value.pageable;        
+        let currentSize = this.pageable.size;
+        this.pageable = value.pageable;
+        this.pageable.size = currentSize;
         this.showDataTable = true;
-
-        let i: number = 0;
-        while(this.pages.length < value.totalPages){
-          this.pages.push(i.toString());
-          i++;
-        }
+        this.calculateQtdPages(value.totalPages);
       }
     );
   }
 
-  public qtd(qtd: string){
+  public qtd(qtd: string) {
     this.pageable.size = qtd;
     this.dataTableGetAll();
   }
 
   public dataTableEdit(row) {
-    this._router.navigate(['./edit', row.id], {relativeTo: this._route});
+    this._router.navigate(['./edit', row.id], { relativeTo: this._route });
   }
 
-  public dataTableDelete(row, index){
+  public dataTableDelete(row, index) {
     this._cadastroService.deleteConfirm(this.delete(row))
       .then((value) => {
         console.log(value);
         this.rows.splice(index, 1);
-    }).catch((e) => console.error(e));
+
+        if (this.rows.length <= 0 && this.pageable.pageNumber > 0) {
+          let n = --this.pageable.pageNumber;
+          this.pageable.page = n.toString();
+          this.dataTableGetAll();
+        }
+      }).catch((e) => console.error(e));
   }
 
   public checkPropertyExistsOnArrayColumns(row: object): string[] {
-      let keysObject = Object.keys(row)
-                  .filter(keyName => this.onlyDisplayColumnsName.includes(keyName));
+    let keysObject = Object.keys(row)
+      .filter(keyName => this.onlyDisplayColumnsName.includes(keyName));
 
-      let keysPrototype = this.onlyDisplayColumnsName.filter(key => !keysObject.includes(key));                  
-      keysPrototype.forEach(key => row[key] = "");
+    let keysPrototype = this.onlyDisplayColumnsName.filter(key => !keysObject.includes(key));
+    keysPrototype.forEach(key => row[key] = "");
 
-      return keysObject.map(key => row[key]);
+    return keysObject.map(key => row[key]);
+  }
+
+
+  private calculateQtdPages(totalPages: number) {
+    let i: number = this.pages.length;
+    if (i < totalPages) {
+      while (this.pages.length < totalPages) {
+        this.pages.push(i.toString());
+        i++;
+      }
+    } else {
+      while (i > totalPages) {
+        this.pages.splice(i - 1, 1);
+        i--;
+      }
+    }
   }
 }
