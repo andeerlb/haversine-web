@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { CustomDataTableColumn } from '../../models/custom-data-table-column.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CadastroService } from '../../../pages/cadastro/cadastro.service';
+import { Pageable } from '../../models/pageable.model';
 
 @Component({
   selector: 'app-custom-data-table',
@@ -23,10 +24,13 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
   private onlyDisplayColumnsName: string[];
   rows: any[];
   showDataTable: boolean = false;
+  pageable: Pageable;
+  pages: string[] = [];
 
   constructor(private _router: Router, private _cadastroService: CadastroService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.pageable = new Pageable('0', '10');
     this.dataTableGetAll();
     this.onlyDisplayColumnsName = this.displayedColumns.map((column: CustomDataTableColumn) => column.name);
   }
@@ -35,13 +39,29 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
     this.showDataTable = false;
   }
 
+  public pagination(page: string) {
+    this.pageable.page = page;
+    this.dataTableGetAll();
+  }
   private dataTableGetAll(): void {
-    this.getAll().subscribe(
+    this.getAll(this.pageable).subscribe(
       value => {
-        this.rows = value;
-        this.showDataTable = true;  
+        this.rows = value.content;
+        this.pageable = value.pageable;        
+        this.showDataTable = true;
+
+        let i: number = 0;
+        while(this.pages.length < value.totalPages){
+          this.pages.push(i.toString());
+          i++;
+        }
       }
     );
+  }
+
+  public qtd(qtd: string){
+    this.pageable.size = qtd;
+    this.dataTableGetAll();
   }
 
   public dataTableEdit(row) {

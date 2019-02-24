@@ -5,6 +5,7 @@ import { StoreService } from '../store.service';
 import { CustomDataTableColumn } from '../../../../../shared/models/custom-data-table-column.model';
 import { CustomDataTable } from '../../../../../shared/components/custom-data-table/custom-data-table.interface';
 import { Observable } from 'rxjs';
+import { Pageable } from '../../../../../shared/models/pageable.model';
 
 @Component({
   templateUrl: './view-store.component.html',
@@ -27,8 +28,8 @@ export class ViewStoreComponent  implements OnInit, CustomDataTable{
   ngOnInit() {
   }
 
-  getAll(): Observable<any> {
-    return this._storeService.getAll();
+  getAll(pageable: Pageable): Observable<any> {
+    return this._storeService.getAll(pageable);
   }
 
   create(){
