@@ -151,6 +151,8 @@ export class CustomDataTableComponent implements OnInit, OnDestroy {
   }
 
   public dataTableDelete(row, index) {
+    console.log(row, index);
+    
     this._cadastroService.deleteConfirm(this.delete(row))
       .then((value) => {
         console.log(value);
