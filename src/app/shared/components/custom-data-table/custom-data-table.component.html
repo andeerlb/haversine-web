@@ -31,11 +31,11 @@
 </table>
 <nav aria-label="Page navigation" class="pt-2 pr-2" *ngIf="rows && rows.length > 0">
   <ul class="pagination justify-content-end mb-2">
-    <label class="col-form-label mr-1">Items por pagina: </label>
-    <select class="col-md-1 mr-4 form-control" (change)="qtd($event.target.value)">
+    <label class="col-form-label mr-1">Items por pagina:</label>
+    <select class="col-md-1 mr-4 form-control" (change)="qtd($event.target.value)" [disabled]="pages.length <= 10">
       <option value="10">10</option>
-      <option value="30">30</option>
-      <option value="50">50</option>
+      <option value="30" *ngIf="pages.length > 10">30</option>
+      <option value="50" *ngIf="pages.length > 30">50</option>
     </select>
     <li class="page-item" [ngClass]="pageable.pageNumber <= 0 ? 'disabled' : ''">
       <button class="page-link" (click)="pagination(pageable.pageNumber-1)">Previous</button>
