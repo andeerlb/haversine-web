@@ -38,7 +38,7 @@
       <option value="50" *ngIf="totalElements > 30">50</option>
     </select>
     <li class="page-item" [ngClass]="pageable.pageNumber <= 0 ? 'disabled' : ''">
-      <button class="page-link" (click)="previousPagination(pageable.pageNumber-1)">Previous</button>
+      <button class="page-link" (click)="previousPagination((pageable.pageNumber-1).toString())">Previous</button>
     </li>
     <li class="page-item" *ngFor="let page of showPages; let i = index;" 
         [ngClass]="{'active': pageable.pageNumber == page}">
@@ -46,7 +46,7 @@
         [disabled]="pageable.pageNumber === +page || +page > pages.length-1">{{(+page)+1}}</button>
     </li>
     <li class="page-item" [ngClass]="pageable.pageNumber >= pages.length-1 ? 'disabled' : ''">
-      <button class="page-link" (click)="nextPagination(pageable.pageNumber+1)">Next</button>
+      <button class="page-link" (click)="nextPagination((pageable.pageNumber+1).toString())">Next</button>
     </li>
   </ul>
 </nav>
