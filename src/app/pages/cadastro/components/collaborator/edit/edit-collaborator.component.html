@@ -18,7 +18,7 @@
 
     <mat-form-field>
       <mat-select placeholder="Cidade" formControlName="cityId">
-        <mat-option *ngFor="let city of (cities| async)" [value]="city.id">
+        <mat-option *ngFor="let city of (cities| async)?.content" [value]="city.id">
           {{city.name}}
         </mat-option>
       </mat-select>

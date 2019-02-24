@@ -33,6 +33,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/sweetalert2/dist/sweetalert2.js",
               "node_modules/echarts/dist/echarts.min.js",
@@ -87,6 +88,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/sweetalert2/dist/sweetalert2.js",
               "node_modules/echarts/dist/echarts.min.js",

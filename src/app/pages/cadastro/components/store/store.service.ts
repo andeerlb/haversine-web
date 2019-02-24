@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../../../environments/environment';
 import { Store } from '../../../../shared/models/store.model';
+import { Pageable } from '../../../../shared/models/pageable.model';
 
 @Injectable()
 export class StoreService {
@@ -17,8 +18,13 @@ export class StoreService {
     return this.http.put(`${env.api}/store/${store.id}`, store) as Observable<Store>;
   }
 
-  getAll(): Observable<Store> {
-    return this.http.get(`${env.api}/store/all`) as Observable<Store>;
+  getAll(pageable: Pageable): Observable<Store> {
+
+    const httpParams = new HttpParams()
+          .set('page', pageable.page ? pageable.page : '0')
+          .set('size', pageable.size ? pageable.size : '10');
+
+    return this.http.get(`${env.api}/store/all`, {params: httpParams}) as Observable<Store>;
   }
 
   delete(store: Store): Observable<Store> {
